@@ -2,14 +2,11 @@ package com.java.authentication.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "demoClient")
@@ -20,23 +17,21 @@ public class Client {
 	@Column(name="clientId")
 	private int clientId;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "agency.agentId")
-	private Agency agency;
-	
-	@NotBlank(message = "Name is mandatory")
+	@Column(name="agentId")
+	private int agentId;
+		
+	@NotNull(message = "Name is mandatory")
 	@Column(name="clientName")
 	private String clientName;
 	
-	@NotBlank(message = "Email is mandatory")
+	@NotNull(message = "Email is mandatory")
 	@Column(name="email")
 	private String email;
 	
-	@NotBlank(message = "PhoneNumber is mandatory")
+	@NotNull(message = "PhoneNumber is mandatory")
 	@Column(name="clientPhoneNumber")
 	private String clientPhoneNumber;
 	
-	@NotBlank(message = "TotalBill is mandatory")
 	@Column(name="totalBill")
 	private double totalBill;
 	
@@ -47,26 +42,13 @@ public class Client {
 	}
 
 
-	public Client(int clientId, Agency agency, @NotBlank(message = "Name is mandatory") String clientName,
-			@NotBlank(message = "Email is mandatory") String email,
-			@NotBlank(message = "PhoneNumber is mandatory") String clientPhoneNumber,
-			@NotBlank(message = "TotalBill is mandatory") double totalBill) {
+	public Client(int clientId, int agentId, @NotNull(message = "Name is mandatory") String clientName,
+			@NotNull(message = "Email is mandatory") String email,
+			@NotNull(message = "PhoneNumber is mandatory") String clientPhoneNumber,
+			double totalBill) {
 		super();
 		this.clientId = clientId;
-		this.agency = agency;
-		this.clientName = clientName;
-		this.email = email;
-		this.clientPhoneNumber = clientPhoneNumber;
-		this.totalBill = totalBill;
-	}
-
-
-	public Client(int clientId, @NotBlank(message = "Name is mandatory") String clientName,
-			@NotBlank(message = "Email is mandatory") String email,
-			@NotBlank(message = "PhoneNumber is mandatory") String clientPhoneNumber,
-			@NotBlank(message = "TotalBill is mandatory") double totalBill) {
-		super();
-		this.clientId = clientId;
+		this.agentId = agentId;
 		this.clientName = clientName;
 		this.email = email;
 		this.clientPhoneNumber = clientPhoneNumber;
@@ -81,6 +63,16 @@ public class Client {
 
 	public void setClientId(int clientId) {
 		this.clientId = clientId;
+	}
+
+
+	public int getAgentId() {
+		return agentId;
+	}
+
+
+	public void setAgentId(int agentId) {
+		this.agentId = agentId;
 	}
 
 
@@ -126,10 +118,10 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [clientId=" + clientId + ", clientName=" + clientName + ", email=" + email + ", phoneNumber="
-				+ clientPhoneNumber + ", totalBill=" + totalBill + "]";
+		return "Client [clientId=" + clientId + ", agentId=" + agentId + ", clientName=" + clientName + ", email="
+				+ email + ", clientPhoneNumber=" + clientPhoneNumber + ", totalBill=" + totalBill + "]";
 	}
-    
+   
 	
-
+   
 }

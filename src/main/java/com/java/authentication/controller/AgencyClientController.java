@@ -39,7 +39,7 @@ class AgencyClientController {
 	@PostMapping("/add-agency-client")
 	public void CreateAgency(@RequestBody NewBodyAuthz newBodyAuthz) {
 		agencyClientService.saveAgency(newBodyAuthz.getAgency());
-		agencyClientService.saveClient(newBodyAuthz.getClient());
+	//	agencyClientService.saveClient(newBodyAuthz.getClient());
 	}
 	
 	
