@@ -1,5 +1,8 @@
 package com.java.authentication.entity;
 
+import java.math.BigDecimal;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +15,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "demoClient")
+@Table(name = "Client")
 public class Client {
 	
 	@Id
@@ -20,7 +23,7 @@ public class Client {
 	@Column(name="clientId")
 	private int clientId;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "agency.agentId")
 	private Agency agency;
 		
@@ -36,8 +39,9 @@ public class Client {
 	@Column(name="clientPhoneNumber")
 	private String clientPhoneNumber;
 	
+	@NotNull(message = "TotalBill is mandatory")
 	@Column(name="totalBill")
-	private double totalBill;
+	private BigDecimal totalBill;
 	
 	
 	public Client()
@@ -48,7 +52,8 @@ public class Client {
 
 	public Client(int clientId, Agency agency, @NotNull(message = "Name is mandatory") String clientName,
 			@NotNull(message = "Email is mandatory") String email,
-			@NotNull(message = "PhoneNumber is mandatory") String clientPhoneNumber, double totalBill) {
+			@NotNull(message = "PhoneNumber is mandatory") String clientPhoneNumber, 
+			@NotNull(message = "TotalBill is mandatory") BigDecimal totalBill) {
 		super();
 		this.clientId = clientId;
 		this.agency = agency;
@@ -109,12 +114,12 @@ public class Client {
 	}
 
 
-	public double getTotalBill() {
+	public BigDecimal getTotalBill() {
 		return totalBill;
 	}
 
 
-	public void setTotalBill(double totalBill) {
+	public void setTotalBill(BigDecimal totalBill) {
 		this.totalBill = totalBill;
 	}
 
@@ -124,7 +129,5 @@ public class Client {
 		return "Client [clientId=" + clientId + ", agency=" + agency + ", clientName=" + clientName + ", email=" + email
 				+ ", clientPhoneNumber=" + clientPhoneNumber + ", totalBill=" + totalBill + "]";
 	}
-
-	
 
 }

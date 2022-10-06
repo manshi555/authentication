@@ -1,5 +1,7 @@
 package com.java.authentication.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +39,8 @@ class AgencyClientController {
 	      }
 
 	@PostMapping("/add-agency-client")
-	public void CreateAgency(@RequestBody NewBodyAuthz newBodyAuthz) {
+	public void CreateAgency(@Valid @RequestBody NewBodyAuthz newBodyAuthz) {
+		
 		clientService.saveClient(newBodyAuthz.getClient());
 	}
 
