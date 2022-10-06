@@ -9,20 +9,11 @@ import com.java.authentication.entity.Agency;
 import com.java.authentication.entity.Client;
 
 @Service
-public class AgencyClientServiceImpl implements AgencyClientService{
+public class ClientServiceImpl implements ClientService{
 
 	
 	@Autowired
-	AgencyDAO agencyDAO;
-	
-	@Autowired
 	ClientDAO clientDAO;
-	
-	@Override
-	public void saveAgency(Agency agency) {
-		agencyDAO.save(agency);
-		
-	}
 
 	@Override
 	public void saveClient(Client client) {

@@ -1,13 +1,11 @@
 package com.java.authentication.entity;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -44,8 +42,6 @@ public class Agency {
 	@Column(name="agentPhoneNumber")
 	private String agentPhoneNumber;
 	
-	@OneToMany
-	private List<Client> listOfClients;
 	
 	public Agency()
 	{
@@ -55,7 +51,7 @@ public class Agency {
 	public Agency(int agentId, @NotNull(message = "Name is mandatory") String agentName,
 			@NotNull(message = "Address is mandatory") String address1, String address2,
 			@NotNull(message = "State is mandatory") String state, @NotNull(message = "City is mandatory") String city,
-			@NotNull(message = "PhoneNumber is mandatory") String agentPhoneNumber, List<Client> listOfClients) {
+			@NotNull(message = "PhoneNumber is mandatory") String agentPhoneNumber) {
 		super();
 		this.agentId = agentId;
 		this.agentName = agentName;
@@ -64,7 +60,6 @@ public class Agency {
 		this.state = state;
 		this.city = city;
 		this.agentPhoneNumber = agentPhoneNumber;
-		this.listOfClients = listOfClients;
 	}
 
 	public int getAgentId() {
@@ -123,21 +118,10 @@ public class Agency {
 		this.agentPhoneNumber = agentPhoneNumber;
 	}
 
-	public List<Client> getListOfClients() {
-		return listOfClients;
-	}
-
-	public void setListOfClients(List<Client> listOfClients) {
-		this.listOfClients = listOfClients;
-	}
-
 	@Override
 	public String toString() {
 		return "Agency [agentId=" + agentId + ", agentName=" + agentName + ", address1=" + address1 + ", address2="
-				+ address2 + ", state=" + state + ", city=" + city + ", agentPhoneNumber=" + agentPhoneNumber
-				+ ", listOfClients=" + listOfClients + "]";
+				+ address2 + ", state=" + state + ", city=" + city + ", agentPhoneNumber=" + agentPhoneNumber + "]";
 	}
-
-	
 	
 }

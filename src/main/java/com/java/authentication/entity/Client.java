@@ -2,9 +2,12 @@ package com.java.authentication.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -17,8 +20,9 @@ public class Client {
 	@Column(name="clientId")
 	private int clientId;
 	
-	@Column(name="agentId")
-	private int agentId;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "agency.agentId")
+	private Agency agency;
 		
 	@NotNull(message = "Name is mandatory")
 	@Column(name="clientName")
@@ -42,13 +46,12 @@ public class Client {
 	}
 
 
-	public Client(int clientId, int agentId, @NotNull(message = "Name is mandatory") String clientName,
+	public Client(int clientId, Agency agency, @NotNull(message = "Name is mandatory") String clientName,
 			@NotNull(message = "Email is mandatory") String email,
-			@NotNull(message = "PhoneNumber is mandatory") String clientPhoneNumber,
-			double totalBill) {
+			@NotNull(message = "PhoneNumber is mandatory") String clientPhoneNumber, double totalBill) {
 		super();
 		this.clientId = clientId;
-		this.agentId = agentId;
+		this.agency = agency;
 		this.clientName = clientName;
 		this.email = email;
 		this.clientPhoneNumber = clientPhoneNumber;
@@ -66,13 +69,13 @@ public class Client {
 	}
 
 
-	public int getAgentId() {
-		return agentId;
+	public Agency getAgency() {
+		return agency;
 	}
 
 
-	public void setAgentId(int agentId) {
-		this.agentId = agentId;
+	public void setAgency(Agency agency) {
+		this.agency = agency;
 	}
 
 
@@ -118,10 +121,10 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [clientId=" + clientId + ", agentId=" + agentId + ", clientName=" + clientName + ", email="
-				+ email + ", clientPhoneNumber=" + clientPhoneNumber + ", totalBill=" + totalBill + "]";
+		return "Client [clientId=" + clientId + ", agency=" + agency + ", clientName=" + clientName + ", email=" + email
+				+ ", clientPhoneNumber=" + clientPhoneNumber + ", totalBill=" + totalBill + "]";
 	}
-   
+
 	
-   
+
 }
