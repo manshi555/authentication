@@ -1,47 +1,51 @@
 package com.java.authentication.entity;
 
-import java.math.BigDecimal;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "Client")
 public class Client {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="clientId")
 	private int clientId;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "agency.agentId")
 	private Agency agency;
-		
-	@NotNull(message = "Name is mandatory")
-	@Column(name="clientName")
+	
+	@NotNull(message = "client name  cannot be null")
+	@NotEmpty(message = "client name  cannot be empty")
 	private String clientName;
 	
-	@NotNull(message = "Email is mandatory")
+	@NotNull(message = "client email cannot be null")
+	@NotEmpty(message = "client email cannot be empty")
+	@Email(message = "invalid email Id")
 	@Column(name="email")
 	private String email;
 	
-	@NotNull(message = "PhoneNumber is mandatory")
+	@NotNull(message = "Client phone number cannot be null")
+	@Pattern(regexp = "^\\d{10}$", message = "invalid client phone number")
 	@Column(name="clientPhoneNumber")
 	private String clientPhoneNumber;
 	
-	@NotNull(message = "TotalBill is mandatory")
+	@NotNull(message = "TotalBill cannot be null")
+	@NotEmpty(message = "TotalBill cannot be empty")
 	@Column(name="totalBill")
-	private BigDecimal totalBill;
+	private String totalBill;
 	
 	
 	public Client()
@@ -50,10 +54,10 @@ public class Client {
 	}
 
 
-	public Client(int clientId, Agency agency, @NotNull(message = "Name is mandatory") String clientName,
-			@NotNull(message = "Email is mandatory") String email,
-			@NotNull(message = "PhoneNumber is mandatory") String clientPhoneNumber, 
-			@NotNull(message = "TotalBill is mandatory") BigDecimal totalBill) {
+	public Client(int clientId, Agency agency,@NotNull @NotEmpty String clientName,
+			@NotNull String email,
+			@NotNull String clientPhoneNumber, 
+			@NotNull @NotEmpty String totalBill) {
 		super();
 		this.clientId = clientId;
 		this.agency = agency;
@@ -114,12 +118,12 @@ public class Client {
 	}
 
 
-	public BigDecimal getTotalBill() {
+	public String getTotalBill() {
 		return totalBill;
 	}
 
 
-	public void setTotalBill(BigDecimal totalBill) {
+	public void setTotalBill(String totalBill) {
 		this.totalBill = totalBill;
 	}
 

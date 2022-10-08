@@ -7,7 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 
 @Entity
@@ -15,30 +17,35 @@ import javax.validation.constraints.NotNull;
 public class Agency {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="agentId")
 	private int agentId;
 	
-	@NotNull(message = "Name is mandatory")
+	@NotNull(message = "agent name cannot be null")
+	@NotEmpty(message = "agent name cannot be empty")
 	@Column(name="agentName")
 	private String agentName;
 	
-	@NotNull(message = "Address is mandatory")
+	@NotNull(message = " agent address cannot be null")
+	@NotEmpty(message = " agent address cannot be empty")
 	@Column(name="address1")
 	private String address1;
 	
 	@Column(name="address2")
 	private String address2;
 	
-	@NotNull(message = "State is mandatory")
+	@NotNull(message = "agent state cannot be null")
+	@NotEmpty(message = "agent state cannot be empty")
 	@Column(name="state")
 	private String state;
 	
-	@NotNull(message = "City is mandatory")
+	@NotNull(message = "agent city cannot be null")
+	@NotEmpty(message = "agent city cannot be empty")
 	@Column(name="city")
 	private String city;
 	
-	@NotNull(message = "PhoneNumber is mandatory")
+	@NotNull(message = "agent phone number cannot be null")
+	@Pattern(regexp = "^\\d{10}$" , message="invalid agent mobile number")
 	@Column(name="agentPhoneNumber")
 	private String agentPhoneNumber;
 	
@@ -48,10 +55,10 @@ public class Agency {
 		
 	}
 
-	public Agency(int agentId, @NotNull(message = "Name is mandatory") String agentName,
-			@NotNull(message = "Address is mandatory") String address1, String address2,
-			@NotNull(message = "State is mandatory") String state, @NotNull(message = "City is mandatory") String city,
-			@NotNull(message = "PhoneNumber is mandatory") String agentPhoneNumber) {
+	public Agency(int agentId,@NotNull @NotEmpty String agentName,
+			@NotNull @NotEmpty String address1, String address2,
+			@NotNull @NotEmpty String state, @NotNull @NotEmpty String city,
+			@NotNull String agentPhoneNumber) {
 		super();
 		this.agentId = agentId;
 		this.agentName = agentName;

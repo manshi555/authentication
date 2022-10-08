@@ -3,10 +3,10 @@ package com.java.authentication.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.java.authentication.dao.AgencyDAO;
 import com.java.authentication.dao.ClientDAO;
-import com.java.authentication.entity.Agency;
 import com.java.authentication.entity.Client;
+
+import net.minidev.json.JSONObject;
 
 @Service
 public class ClientServiceImpl implements ClientService{
@@ -15,9 +15,14 @@ public class ClientServiceImpl implements ClientService{
 	@Autowired
 	ClientDAO clientDAO;
 
-	@Override
-	public void saveClient(Client client) {
-		clientDAO.save(client);	
+	public JSONObject saveClient(Client client) {
+		JSONObject jsonObject = new JSONObject();
+		clientDAO.save(client);
+		jsonObject.put("status", "added");
+		jsonObject.put("message", "success");
+		return jsonObject;	
+		
 	}
-
+    
+	
 }
