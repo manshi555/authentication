@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -22,28 +24,21 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="clientId")
 	private int clientId;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "agency.agentId")
-	private Agency agency;
-	
-	@NotNull(message = "client name  cannot be null")
-	@NotEmpty(message = "client name  cannot be empty")
+		
+	@NotEmpty(message = "client name is mandatory")
 	private String clientName;
 	
-	@NotNull(message = "client email cannot be null")
-	@NotEmpty(message = "client email cannot be empty")
+	@NotEmpty(message = "client email is mandatory")
 	@Email(message = "invalid email Id")
 	@Column(name="email")
 	private String email;
 	
-	@NotNull(message = "Client phone number cannot be null")
+	@NotEmpty(message = "Client phone number is mandatory")
 	@Pattern(regexp = "^\\d{10}$", message = "invalid client phone number")
 	@Column(name="clientPhoneNumber")
 	private String clientPhoneNumber;
 	
-	@NotNull(message = "TotalBill cannot be null")
-	@NotEmpty(message = "TotalBill cannot be empty")
+	@NotEmpty(message = "TotalBill is mandatory")
 	@Column(name="totalBill")
 	private String totalBill;
 	
@@ -54,13 +49,12 @@ public class Client {
 	}
 
 
-	public Client(int clientId, Agency agency,@NotNull @NotEmpty String clientName,
+	public Client(int clientId, @NotNull @NotEmpty String clientName,
 			@NotNull String email,
 			@NotNull String clientPhoneNumber, 
 			@NotNull @NotEmpty String totalBill) {
 		super();
 		this.clientId = clientId;
-		this.agency = agency;
 		this.clientName = clientName;
 		this.email = email;
 		this.clientPhoneNumber = clientPhoneNumber;
@@ -75,16 +69,6 @@ public class Client {
 
 	public void setClientId(int clientId) {
 		this.clientId = clientId;
-	}
-
-
-	public Agency getAgency() {
-		return agency;
-	}
-
-
-	public void setAgency(Agency agency) {
-		this.agency = agency;
 	}
 
 
@@ -130,7 +114,7 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [clientId=" + clientId + ", agency=" + agency + ", clientName=" + clientName + ", email=" + email
+		return "Client [clientId=" + clientId + ", agency="  + ", clientName=" + clientName + ", email=" + email
 				+ ", clientPhoneNumber=" + clientPhoneNumber + ", totalBill=" + totalBill + "]";
 	}
 

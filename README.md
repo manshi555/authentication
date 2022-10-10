@@ -2,19 +2,21 @@
 
 # REQUEST BODY
 {
-    "client": {
-   			   "clientName": "manvi",
-    			"clientPhoneNumber": "38746347348",
-    			"email": "abc@gmail.com",
-    			"totalBill" : 2345.00,
 		"agency": {
-                    "agentPhoneNumber" : "8978675646",
-                    "address1": "qwertyuioplkjhgfdsa",
-                    "address2": "sjsvakcbasklflsd",
-                    "agentName": "manshi",
-                    "city": "agra",
-                    "state": "UP"
+                    "agentPhoneNumber" : "9876543287",
+                    "address1": "Awas Vikas",
+                    "address2": "near tesheel",
+                    "agentName": "shyam",
+                    "city": "Agra",
+                    "state": "UP",
+        "listOfClients": 
+   			    [{"clientName": "Rita",
+    			"clientPhoneNumber": "9878985645",
+    			"email": "rita@gmail.com",
+    			"totalBill" : "4563.98"
+                 }]
+
 		        }
     }
-}
+
 

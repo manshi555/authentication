@@ -1,15 +1,20 @@
 package com.java.authentication.entity;
 
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+
 
 
 @Entity
@@ -21,44 +26,46 @@ public class Agency {
 	@Column(name="agentId")
 	private int agentId;
 	
-	@NotNull(message = "agent name cannot be null")
-	@NotEmpty(message = "agent name cannot be empty")
+	@NotEmpty(message = "agent name is mandatory")
 	@Column(name="agentName")
 	private String agentName;
 	
-	@NotNull(message = " agent address cannot be null")
-	@NotEmpty(message = " agent address cannot be empty")
+	@NotEmpty(message = " agent address is mandatory")
 	@Column(name="address1")
 	private String address1;
 	
 	@Column(name="address2")
 	private String address2;
 	
-	@NotNull(message = "agent state cannot be null")
-	@NotEmpty(message = "agent state cannot be empty")
+	@NotEmpty(message = "agent state is mandatory")
 	@Column(name="state")
 	private String state;
 	
-	@NotNull(message = "agent city cannot be null")
-	@NotEmpty(message = "agent city cannot be empty")
+	@NotEmpty(message = "agent city is mandatory")
 	@Column(name="city")
 	private String city;
 	
-	@NotNull(message = "agent phone number cannot be null")
+	@NotEmpty(message = "agent phone number is mandatory")
 	@Pattern(regexp = "^\\d{10}$" , message="invalid agent mobile number")
 	@Column(name="agentPhoneNumber")
 	private String agentPhoneNumber;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Client> listOfClients;
 	
 	public Agency()
 	{
 		
 	}
 
-	public Agency(int agentId,@NotNull @NotEmpty String agentName,
-			@NotNull @NotEmpty String address1, String address2,
-			@NotNull @NotEmpty String state, @NotNull @NotEmpty String city,
-			@NotNull String agentPhoneNumber) {
+	public Agency(int agentId,
+			String agentName,
+			String address1,
+			String address2,
+			String state,
+			String city,
+			String agentPhoneNumber,
+			List<Client> listOfClients) {
 		super();
 		this.agentId = agentId;
 		this.agentName = agentName;
@@ -67,7 +74,10 @@ public class Agency {
 		this.state = state;
 		this.city = city;
 		this.agentPhoneNumber = agentPhoneNumber;
+		this.listOfClients = listOfClients;
 	}
+
+
 
 	public int getAgentId() {
 		return agentId;
@@ -125,10 +135,25 @@ public class Agency {
 		this.agentPhoneNumber = agentPhoneNumber;
 	}
 
+	public List<Client> getListOfClients() {
+		return listOfClients;
+	}
+
+
+
+	public void setListOfClients(List<Client> listOfClients) {
+		this.listOfClients = listOfClients;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Agency [agentId=" + agentId + ", agentName=" + agentName + ", address1=" + address1 + ", address2="
-				+ address2 + ", state=" + state + ", city=" + city + ", agentPhoneNumber=" + agentPhoneNumber + "]";
+				+ address2 + ", state=" + state + ", city=" + city + ", agentPhoneNumber=" + agentPhoneNumber
+				+ ", listOfClients=" + listOfClients + "]";
 	}
+
+	
 	
 }
