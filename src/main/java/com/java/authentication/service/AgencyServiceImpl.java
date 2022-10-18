@@ -37,12 +37,7 @@ public class AgencyServiceImpl implements AgencyService{
 	}
 
 	public ResponseData findDetails() {
-		 List<ResponseData> responseData = agencyDAO.findTopClient();
-		 if(responseData.size() < 0)
-		 {
-		    return responseData.get(0);
-		 }
-		 return null;
+		 return agencyDAO.findTopClient();
 		}
 
 }

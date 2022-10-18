@@ -1,31 +1,30 @@
 package com.java.authentication.entity;
 
+
 public class ResponseData {
 	
-	
-    private String agentName;
-    private String clientName;
-    private String totalBill;
-	public String getAgentName() {
-		return agentName;
-	}
-	public void setAgentName(String agentName) {
+	 String agentName;
+	 String clientName;
+	 String totalBill;
+	 
+	 public ResponseData()
+	 {
+		 
+	 }
+ 
+	public ResponseData(String agentName, String clientName, String totalBill) {
+		super();
 		this.agentName = agentName;
-	}
-	public String getClientName() {
-		return clientName;
-	}
-	public void setClientName(String clientName) {
 		this.clientName = clientName;
-	}
-	public String getTotalBill() {
-		return totalBill;
-	}
-	public void setTotalBill(String totalBill) {
 		this.totalBill = totalBill;
 	}
-    
-    
+
+	@Override
+	public String toString() {
+		return "ResponseData [agentName=" + agentName + ", clientName=" + clientName + ", totalBill=" + totalBill + "]";
+	}
+ 
+ 
     
     
 }
