@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.java.authentication.dao.AgencyDAO;
 import com.java.authentication.entity.Agency;
 import com.java.authentication.entity.Client;
+import com.java.authentication.entity.Constants;
+import com.java.authentication.entity.ResponseData;
 
 import net.minidev.json.JSONObject;
 
@@ -34,11 +36,11 @@ public class AgencyServiceImpl implements AgencyService{
 		
 	}
 
-	public Agency findDetails(int agentId, int clientId) {
-		 Optional<Agency> a = agencyDAO.findTopClient(agentId, clientId);
-		 if(a.isPresent())
+	public ResponseData findDetails() {
+		 List<ResponseData> responseData = agencyDAO.findTopClient();
+		 if(responseData.size() < 0)
 		 {
-		    return a.get();
+		    return responseData.get(0);
 		 }
 		 return null;
 		}

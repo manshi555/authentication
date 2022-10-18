@@ -40,8 +40,8 @@ public class AgencyClientController {
 	}
    
 	@GetMapping("/get-details")
-	public ResponseEntity<?> showDetails(@PathVariable("agency") int agentId, @PathVariable("client") int clientId)
+	public ResponseEntity<?> showDetails()
 	{
-		return new ResponseEntity<>(agencyService.findDetails(agentId,clientId),HttpStatus.OK); 
+		return new ResponseEntity<>(agencyService.findDetails(),HttpStatus.OK); 
 	}
 }
