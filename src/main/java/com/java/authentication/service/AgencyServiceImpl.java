@@ -1,6 +1,8 @@
 package com.java.authentication.service;
 
 
+
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import com.java.authentication.entity.Agency;
 import com.java.authentication.entity.Client;
 
 import net.minidev.json.JSONObject;
+
+
 
 
 @Service
@@ -30,8 +34,13 @@ public class AgencyServiceImpl implements AgencyService{
 		
 	}
 
-
-
-
+	public Agency findDetails(int agentId, int clientId) {
+		 Optional<Agency> a = agencyDAO.findTopClient(agentId, clientId);
+		 if(a.isPresent())
+		 {
+		    return a.get();
+		 }
+		 return null;
+		}
 
 }

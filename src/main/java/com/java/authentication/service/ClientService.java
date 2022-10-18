@@ -1,15 +1,12 @@
 package com.java.authentication.service;
 
+import java.util.List;
 
-import java.util.Optional;
-
+import com.java.authentication.entity.Agency;
 import com.java.authentication.entity.Client;
-
-import net.minidev.json.JSONObject;
 
 public interface ClientService {
 
-	Optional<Client> updateClientDetails(Client client);
+	public Client updateClientDetails(int clientId, Client client);
 	
-
 }
