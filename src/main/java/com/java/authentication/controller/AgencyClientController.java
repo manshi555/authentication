@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.java.authentication.entity.AuthenticationRequest;
+import com.java.authentication.model.ResponseData;
 import com.java.authentication.service.AgencyService;
 import com.java.authentication.service.ClientService;
 
@@ -40,7 +41,7 @@ public class AgencyClientController {
 	}
    
 	@GetMapping("/get-details")
-	public ResponseEntity<?> showDetails()
+	public ResponseEntity<ResponseData> showDetails()
 	{
 		return new ResponseEntity<>(agencyService.findDetails(),HttpStatus.OK); 
 	}

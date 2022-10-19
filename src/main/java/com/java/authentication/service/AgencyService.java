@@ -3,7 +3,7 @@ package com.java.authentication.service;
 
 
 import com.java.authentication.entity.Agency;
-import com.java.authentication.entity.ResponseData;
+import com.java.authentication.model.ResponseData;
 
 import net.minidev.json.JSONObject;
 

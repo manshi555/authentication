@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.authentication.dao.AgencyDAO;
+import com.java.authentication.dao.ResponseDataDto;
 import com.java.authentication.entity.Agency;
 import com.java.authentication.entity.Client;
 import com.java.authentication.entity.Constants;
-import com.java.authentication.entity.ResponseData;
+import com.java.authentication.model.ResponseData;
+import com.java.authentication.repository.CommonFunctionalityRepo;
 
 import net.minidev.json.JSONObject;
 
@@ -24,6 +26,9 @@ public class AgencyServiceImpl implements AgencyService{
 
 	@Autowired
 	 AgencyDAO agencyDAO;
+	
+	@Autowired
+	CommonFunctionalityRepo commonRepo;
 	
 	@Override
 	public JSONObject saveAgent(Agency agency) {
@@ -37,7 +42,8 @@ public class AgencyServiceImpl implements AgencyService{
 	}
 
 	public ResponseData findDetails() {
-		 return agencyDAO.findTopClient();
+		 ResponseData response = commonRepo.findTopClient();
+		 return response;
 		}
 
 }
