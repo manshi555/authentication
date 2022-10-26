@@ -33,7 +33,7 @@ public class CommonFunctionalityRepo {
 			ResponseData responseData = new ResponseData();
 			responseData.setAgentName(resultset.getString(1));
 			responseData.setClientName(resultset.getString(2));
-			responseData.setTotalBill(resultset.getDouble(3));
+			responseData.setTotalBill(resultset.getString(3));
 			return responseData;
 		}
 		});

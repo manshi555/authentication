@@ -2,17 +2,11 @@ package com.java.authentication.service;
 
 
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.authentication.dao.AgencyDAO;
-import com.java.authentication.dao.ResponseDataDto;
 import com.java.authentication.entity.Agency;
-import com.java.authentication.entity.Client;
-import com.java.authentication.entity.Constants;
 import com.java.authentication.model.ResponseData;
 import com.java.authentication.repository.CommonFunctionalityRepo;
 
@@ -42,7 +36,10 @@ public class AgencyServiceImpl implements AgencyService{
 	}
 
 	public ResponseData findDetails() {
-		 ResponseData response = commonRepo.findTopClient();
+		// Using Spring Data JPA
+		ResponseData response = agencyDAO.findTopClient();
+		// Using JDBC template
+		// ResponseData response = commonRepo.findTopClient();
 		 return response;
 		}
 
