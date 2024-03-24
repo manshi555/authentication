@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "f7aaed96-89d9-4d50-afef-78723dbac6d8",
+		"name": "Authentication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "addRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE2NjYxMTMyNDMsImlhdCI6MTY2NjA5NTI0M30.AbWTU01a0bbNHbpM_gI4Ks7kzK9PC32lz4sygSzv-tIhfVpJjzV5tJEvGfBZRXozmdvDaJ4DSTcXB2QWYAV3XQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\t\"agency\": {\r\n                    \"agentPhoneNumber\" : \"8768908765\",\r\n                    \"address1\": \"laal road\",\r\n                    \"address2\": \"\",\r\n                    \"agentName\": \"Prisha\",\r\n                    \"city\": \"patna\",\r\n                    \"state\": \"Bihar\",\r\n        \"listOfClients\": \r\n   \t\t\t    [{\r\n                \"clientName\": \"Priyanka\",\r\n    \t\t\t\"clientPhoneNumber\": \"7865098767\",\r\n    \t\t\t\"email\": \"priyanka@gmail.com\",\r\n    \t\t\t\"totalBill\" : \"7686.90\"\r\n                 }]\r\n\r\n\t\t        }\r\n    }\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/authz/add-details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"authz",
+						"add-details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE2NjYxMzQwMzcsImlhdCI6MTY2NjExNjAzN30.t6IBnne2R9Q2d0wCjJaVnFdAyhOi_KDBdKFhxvjugQGAABBRe-8_KQeUHRianjpS_tsqehn4BpQmjrNXY7iYRQ",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/authz/get-details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"authz",
+						"get-details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE2NjU1MjAxMjMsImlhdCI6MTY2NTUwMjEyM30.bzg6qnV2LX6G4zHraHI2ozRsNpmgCxitE69rIMFloRSJ8_Y8lnByVZPv7g8TeRlYHvQTijeyBD-rP77LDTbYhA",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"client\": \r\n   \t\t\t    {\"clientName\": \"reena\",\r\n    \t\t\t\"clientPhoneNumber\": \"9878985645\",\r\n    \t\t\t\"email\": \"rita@gmail.com\",\r\n    \t\t\t\"totalBill\" : \"4563.98\"\r\n                 }\r\n\r\n}\r\n    ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/authz/update-details/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"authz",
+						"update-details",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token-generate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"javainuse\",\r\n    \"password\" : \"manshi\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
